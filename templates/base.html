@@ -1,12 +1,17 @@
-{% extends 'base.html' %} 
-{% load crispy_forms_tags %}
-
-<!-- templates/accounts/dashboard.html -->
-<{% block title %}Dasboard | Dental Clinic{% endblock %}
-  <body>
+<!-- templates/base.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Dental Clinic{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
     
     {% block navbar %}
-      <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+         <!-- Navbar -->
+    <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-blue-600">🦷 Dental Clinic</h1>
       <div>
         {% if request.user.is_authenticated %}
@@ -24,10 +29,13 @@
         {% endif %}
       </div>
     </nav>
+
     {% endblock navbar %}
-      
-    <h2>Welcome, {{ request.user.username }}!</h2>
-    <p>Your role: {{ request.user.role }}</p>
-    <a href="/accounts/logout/">Logout</a>
+        
+   
+    <!-- Main content -->
+    <main class="container mx-auto mt-8 px-4">
+      {% block content %} {% endblock %}
+    </main>
   </body>
 </html>

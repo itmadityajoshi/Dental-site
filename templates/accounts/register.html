@@ -1,15 +1,25 @@
-<!-- templates/accounts/register.html -->
-<!doctype html>
-<html>
-  <head>
-    <title>Register | Dental Clinic</title>
-  </head>
-  <body>
-    <h2>Create an Account</h2>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register | Dental Clinic{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Create an Account</h2>
+
+    {% if form.errors %}
+    <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+        Please fix the errors below.
+    </div>
+    {% endif %}
+
     <form method="POST">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Register</button>
+        {% csrf_token %}
+        {% crispy form %}
     </form>
-    <p>Already have an account? <a href="/accounts/login/">Login here</a></p>
-  </body>
-</html>
+
+    <p class="mt-4 text-gray-600">Already have an account?
+        <a href="/accounts/login/" class="text-blue-500 hover:underline">Login here</a>
+    </p>
+</div>
+{% endblock %}

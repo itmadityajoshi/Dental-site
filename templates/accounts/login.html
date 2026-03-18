@@ -1,23 +1,25 @@
-<!-- templates/accounts/login.html -->
-<!doctype html>
-<html>
-  <head>
-    <title>Login | Dental Clinic</title>
-  </head>
-  <body>
-    <h2>Login to Dental Clinic</h2>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login | Dental Clinic{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Login to Dental Clinic</h2>
 
     {% if form.errors %}
-    <div style="color: red">
-      <p>Login failed. Please check your username and password.</p>
-      {{ form.errors }}
+    <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+        <p>Login failed. Please check your username and password.</p>
     </div>
     {% endif %}
 
     <form method="POST">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Login</button>
+        {% csrf_token %}
+        {% crispy form %}
     </form>
-    <p>No account? <a href="/accounts/register/">Register here</a></p>
-  </body>
-</html>
+
+    <p class="mt-4 text-gray-600">No account?
+        <a href="/accounts/register/" class="text-blue-500 hover:underline">Register here</a>
+    </p>
+</div>
+{% endblock %}
