@@ -1,0 +1,12 @@
+<!-- templates/accounts/dashboard.html -->
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard | Dental Clinic</title>
+  </head>
+  <body>
+    <h2>Welcome, {{ request.user.username }}!</h2>
+    <p>Your role: {{ request.user.role }}</p>
+    <a href="/accounts/logout/">Logout</a>
+  </body>
+</html>
